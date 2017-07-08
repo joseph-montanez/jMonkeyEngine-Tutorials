@@ -46,7 +46,7 @@ public class Level01State extends AbstractAppState {
         Material mat = assetManager.loadMaterial("Materials/BlueBoat.j3m");
         geom.setMaterial(mat);
 
-        rootNode.attachChild(geom);
+        localRootNode.attachChild(geom);
     }
     
     @Override
@@ -54,5 +54,16 @@ public class Level01State extends AbstractAppState {
         rootNode.detachChild(localRootNode);
         
         super.cleanup();
+    }
+    
+    @Override
+    public void update(float tpf) {
+        Geometry geom = (Geometry) localRootNode.getChild("Box");
+        if (geom != null) {
+            float speed = 0.01f;
+            float addXRot = speed;
+            geom.rotate(addXRot, 0, 0);
+        }
+        
     }
 }
