@@ -9,7 +9,11 @@ import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.asset.AssetManager;
+import com.jme3.material.Material;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
+import com.jme3.scene.shape.Box;
 
 /**
  *
@@ -22,9 +26,11 @@ public class Level01State extends AbstractAppState {
      * This will hold all of our scene details and make it easier to clean up when we change to the next level
      */
     private final Node localRootNode = new Node("Level 1");
+    private final AssetManager assetManager;
     
     public Level01State(SimpleApplication app) {
         rootNode = app.getRootNode();
+        assetManager = app.getAssetManager();
     }
     
     @Override
@@ -32,6 +38,15 @@ public class Level01State extends AbstractAppState {
         super.initialize(stateManager, app);
         
         rootNode.attachChild(localRootNode);
+        
+        
+        Box b = new Box(1, 1, 1);
+        Geometry geom = new Geometry("Box", b);
+
+        Material mat = assetManager.loadMaterial("Materials/BlueBoat.j3m");
+        geom.setMaterial(mat);
+
+        rootNode.attachChild(geom);
     }
     
     @Override

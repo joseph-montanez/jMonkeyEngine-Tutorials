@@ -1,5 +1,6 @@
 package com.cosmicgrams.helloworld1;
 
+import com.cosmicgrams.helloworld1.state.Level01State;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -21,13 +22,7 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        Box b = new Box(1, 1, 1);
-        Geometry geom = new Geometry("Box", b);
-
-        Material mat = assetManager.loadMaterial("Materials/BlueBoat.j3m");
-        geom.setMaterial(mat);
-
-        rootNode.attachChild(geom);
+        stateManager.attach(new Level01State(this));
     }
 
     @Override
