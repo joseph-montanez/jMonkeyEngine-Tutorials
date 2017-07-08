@@ -60,8 +60,8 @@ public class Level01State extends AbstractAppState {
     public void update(float tpf) {
         Geometry geom = (Geometry) localRootNode.getChild("Box");
         if (geom != null) {
-            float speed = 0.01f;
-            float addXRot = speed;
+            float speed = 1.0f;
+            float addXRot = speed * tpf;
             geom.rotate(addXRot, 0, 0);
         }
         
