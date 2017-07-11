@@ -45,14 +45,22 @@ public class Level01State extends AbstractAppState {
     private final Camera camera;
     private ChaseCamera chaseCam;
     private CharacterControl playerControl;
+    
+    //-- Setup walk direction
     private final Vector3f playerWalkDirection = new Vector3f(0, 0, 0);
+    
+    //-- Setup directional booleans
     private boolean left = false, right = false, up = false, down = false;
     
     public Level01State(SimpleApplication app) {
         rootNode = app.getRootNode();
         assetManager = app.getAssetManager();
         inputManager = app.getInputManager();
+        
+        //-- Get the fly by camera to disable it
         flyByCamera = app.getFlyByCamera();
+        
+        //-- Get the camera to get where the camera is looking
         camera = app.getCamera();
     }
     
